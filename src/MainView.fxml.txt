@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controller.MainController" spacing="10" 
+     style="-fx-padding: 10; -fx-background-color: #f5f5f5;">
+    
+    <Label text="Peer Study Matcher" style="-fx-font-weight: bold; -fx-font-size: 20;"/>
+    
+    <HBox spacing="10">
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 5;">
+            <Label text="Student Information" style="-fx-font-weight: bold;"/>
+            
+            <GridPane hgap="5" vgap="5">
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                
+                <Label text="Role:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="10">
+                    <ToggleGroup fx:id="roleGroup"/>
+                    <RadioButton fx:id="helperRadio" text="Helper" toggleGroup="$roleGroup"/>
+                    <RadioButton fx:id="needyRadio" text="Needy" toggleGroup="$roleGroup"/>
+                </HBox>
+                
+                <Label text="Subjects I can help with:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="subjectsCanHelpField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                
+                <Label text="Subjects I need help in:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="subjectsNeedHelpField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+            
+            <HBox spacing="10">
+                <Button text="Add" onAction="#handleAddStudent" style="-fx-base: #4CAF50;"/>
+                <Button text="Update" onAction="#handleUpdateStudent" style="-fx-base: #2196F3;"/>
+                <Button text="Delete" onAction="#handleDeleteStudent" style="-fx-base: #F44336;"/>
+                <Button text="Clear" onAction="#clearFields" style="-fx-base: #9E9E9E;"/>
+            </HBox>
+            
+            <HBox spacing="10">
+                <Button text="Save" onAction="#handleSave" style="-fx-base: #FF9800;"/>
+                <Button text="Load" onAction="#handleLoad" style="-fx-base: #607D8B;"/>
+                <Button text="Match Students" onAction="#handleMatchStudents" style="-fx-base: #9C27B0;"/>
+            </HBox>
+        </VBox>
+        
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 5;">
+            <Label text="Student List" style="-fx-font-weight: bold;"/>
+            <TableView fx:id="studentTable" onMouseClicked="#handleTableClick">
+                <columns>
+                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="100"/>
+                    <TableColumn fx:id="roleColumn" text="Role" prefWidth="80"/>
+                    <TableColumn fx:id="canHelpColumn" text="Can Help With" prefWidth="150"/>
+                    <TableColumn fx:id="needHelpColumn" text="Needs Help In" prefWidth="150"/>
+                </columns>
+            </TableView>
+            
+            <Label text="Matching Results" style="-fx-font-weight: bold;"/>
+            <ListView fx:id="matchResultsList" prefHeight="150"/>
+        </VBox>
+    </HBox>
+</VBox>
